@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <body>
+        <script
+          type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"
+        ></script>
+
+        <input type="text" id="v1" value="" placeholder="Janeiro" />
+        <input type="text" id="v3" value="" placeholder="Março" />
+        <input type="text" id="v5" value="" placeholder="Maio" />
+        <input type="text" id="v7" value="" placeholder="Julho" />
+        <button id="btn_somarJs">Janeiro</button>
+
+        <div id="chart_div"></div>
+
+        <script type="text/javascript">
+          google.charts.load("current", { packages: ["bar"] });
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn("string", "Topping");
+            data.addColumn("number", "Coluna");
+            data.addRows([
+              ["Janeiro", 2],
+              ["Fevereiro", 3],
+              ["Março", 5],
+              ["Abril", 2],
+              ["Maio", 2],
+              ["Junho", 3],
+              ["Julho", 1],
+              ["Agosto", 4],
+              ["Setembro", 1],
+              ["Outubro", 2],
+              ["Novembro", 1],
+              ["Dezembro", 5.5],
+            ]);
+
+            var options = { title: "How Much Pizza I Ate Last Night" };
+            var chart = new google.charts.Bar(
+              document.getElementById("chart_div")
+            );
+            chart.draw(data, options);
+
+            var btn = document.getElementById("btn_somarJs");
+            btn.addEventListener("click", function () {
+              var teste = parseInt(v1.value);
+              var teste2 = parseInt(v3.value);
+              var teste2 = parseInt(v5.value);
+              var teste2 = parseInt(v7.value);
+              data.setValue(0, 1, teste);
+              data.setValue(2, 1, teste2);
+              data.setValue(4, 1, teste2);
+              data.setValue(6, 1, teste2);
+              chart.draw(data);
+            });
+          }
+        </script>
+
+        <style>
+          html,
+          body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+
+          #chart_div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+
+            width: 80%;
+            min-height: 50%;
+          }
+        </style>
+      </body>
+    </html>
+  </body>
+</html>
